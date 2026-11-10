@@ -1,0 +1,33 @@
+<h2>Elenco Post</h2>
+
+<div>
+  <input [(ngModel)]="nuovoTitolo" placeholder="Titolo nuovo post..." />
+  <button (click)="inviaPost()">Crea Post</button>
+</div>
+
+<br />
+
+<div>
+  <input 
+    [ngModel]="filtro()" 
+    (ngModelChange)="filtro.set($event)" 
+    placeholder="Filtra per titolo..." 
+  />
+  <p>Elementi filtrati: <strong>{{ postFiltrati().length }}</strong> / {{ postService.posts().length }}</p>
+</div>
+
+@if (postService.loading()) {
+  <p>Caricamento in corso...</p>
+}
+
+@if (postService.error()) {
+  <p style="color: red;">{{ postService.error() }}</p>
+}
+
+<ul>
+  @for (post of postFiltrati(); track post.id) {
+    <li>
+      <a [routerLink]="['/posts', post.id]">{{ post.title }}</a>
+    </li>
+  }
+</ul>
