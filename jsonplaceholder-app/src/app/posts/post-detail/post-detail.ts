@@ -10,7 +10,7 @@ import { PostService } from '../../services/post-service';
   templateUrl: './post-detail.html',
   styleUrl: './post-detail.css'
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetail implements OnInit {
   readonly postService = inject(PostService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);

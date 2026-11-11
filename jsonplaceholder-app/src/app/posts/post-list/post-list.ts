@@ -11,7 +11,7 @@ import { PostService } from '../../services/post-service'; // Import corretto co
   templateUrl: './post-list.html',
   styleUrl: './post-list.css'
 })
-export class PostListComponent implements OnInit {
+export class PostList implements OnInit {
   readonly postService = inject(PostService);
   
   readonly filtro = signal('');
