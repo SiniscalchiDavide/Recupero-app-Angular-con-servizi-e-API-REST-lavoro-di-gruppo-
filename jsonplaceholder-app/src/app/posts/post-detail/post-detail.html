@@ -1,0 +1,41 @@
+<div style="margin: 20px;">
+  <a routerLink="/posts">← Torna all'elenco dei post</a>
+
+  <hr />
+
+  <!-- Gestione Stato di Caricamento -->
+  @if (postService.loading()) {
+    <p>Caricamento dettaglio post in corso...</p>
+  }
+
+  <!-- Gestione Errore (es. Errore 404 o Stato 0) -->
+  @if (postService.error()) {
+    <div style="color: red; margin: 10px 0;">
+      <strong>Attenzione:</strong> {{ postService.error() }}
+    </div>
+  }
+
+  <!-- Contenuto del Post -->
+  @if (!postService.loading() && postService.selectedPost(); as post) {
+    <article>
+      <h2>Post #{{ post.id }}</h2>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.body }}</p>
+    </article>
+  }
+
+  <hr />
+
+  <!-- Navigazione Precedente / Successivo -->
+  <div>
+    <button [disabled]="currentId <= 1" (click)="cambiaPost(currentId - 1)">
+      « Precedente
+    </button>
+
+    <span style="margin: 0 15px;"> ID Attuale: {{ currentId }} </span>
+
+    <button (click)="cambiaPost(currentId + 1)">
+      Successivo »
+    </button>
+  </div>
+</div>
