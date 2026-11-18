@@ -14,7 +14,7 @@ import { PostService } from '../../services/post-service'; // Import corretto co
 export class PostList implements OnInit {
   // Inietta il servizio per comunicare con l'API e condividere lo stato dei post
   readonly postService = inject(PostService);
-  
+
   // Signal reattivo che memorizza il testo digitato nella barra di ricerca
   readonly filtro = signal('');
   nuovoTitolo = '';
